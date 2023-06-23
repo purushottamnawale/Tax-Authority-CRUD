@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Tax</title>
+</head>
+
+<body>
+  <!--Navbar consists only Home and Add Tax-->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+          <a class="nav-link" routerLink="/add">Add Tax</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!--Form to add tax  name: string email: string gender: string-->
+
+  <div class="my-5">
+    <div class="mx-5 mr-5">
+      <div class="container d-flex justify-content-between">
+        <h3 class="text-left d-inline" id="tax_authority">Tax Authority</h3>
+        <button class="btn btn-primary d-inline" routerLink="/add"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+            height="16" fill="currentColor" class="bi bi-calendar-fill" viewBox="0 0 16 16">
+            <path
+              d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5h16V4H0V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5z" />
+          </svg> Add New Tax Authority</button>
+      </div>
+      <form [formGroup]="form" (ngSubmit)="submit()" class="mx-5 mr-5 my-5">
+        <!--Name-->
+        <div class="row">
+          <div class="col form-group">
+            <label for="name" class="form-label">Name</label>
+            <input id="name" formControlName="name" type="text" name="name" class="form-control" [placeholder]="tax?.name" required>
+          </div>
+
+
+          <!--Country Name-->
+          <div class="col form-group">
+            <label for="taxtype" class="form-label">Country Name</label>
+            <select class="form-select" data-style="btn-primary" formControlName="country" name="country" id="country">
+              <option value="India">India</option>
+              <option value="USA">USA</option>
+            </select>
+          </div>
+
+          <!-- Tax Type -->
+          <div class="col form-group">
+            <label for="taxtype" class="form-label">Tax Type</label>
+            <select class="form-select" data-style="btn-primary" formControlName="taxtype" name="taxtype" id="taxtype">
+              <option value="GST">GST</option>
+              <option value="incometax">Income Tax</option>
+            </select>
+          </div>
+        </div>
+
+        <!--Zone-->
+        <div class="row my-5">
+          <div class="col form-group mb-3">
+            <label for="name" class="form-label">Zone</label>
+            <input id="name" formControlName="zone" type="text" name="name" class="form-control" [placeholder]="tax?.zone"
+              required>
+          </div>
+
+          <!--Ward-->
+          <div class="col form-group mb-3">
+            <label for="name" class="form-label">Ward</label>
+            <input id="name" formControlName="ward" type="text" name="name" class="form-control" [placeholder]="tax?.ward"
+              required>
+          </div>
+          <!--Status-->
+
+          <div class="col form-group mb-3">
+            <label for="status" class="form-label">Status</label>
+            <input id="status" formControlName="status" type="text" name="status" class="form-control" [placeholder]="tax?.status"required>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col form-group d-flex justify-content-center my-3">
+            <input [disabled]="!form.valid" class="btn btn-primary" type="submit" value="Update">
+            <button type="back" class="btn btn-danger" routerLink="/">Back</button>
+          </div>
+        </div>
+        
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Tax</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+          <a class="nav-link" routerLink="/add">Add Tax</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="my-5">
+    <div class="mx-auto w-25 " style="max-width:100%;">
+      <h2 class="text-center mb-3">Update Tax</h2>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+
+        <div class="row">
+          <div class="col-md-12 form-group mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input id="name" formControlName="name" type="text" name="name" class="form-control"
+              [placeholder]="tax?.name" required>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 form-group mb-3">
+            <label for="country" class="form-label">Country</label>
+            <input id="country" formControlName="country" type="country" name="country" class="form-control"
+              [placeholder]="tax?.country" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 form-group">
+            <button [disabled]="!form.valid" class="btn btn-primary w-100" type="submit" value="Submit">Button</button>
+          </div>
+        </div>
+        <div>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html> -->
