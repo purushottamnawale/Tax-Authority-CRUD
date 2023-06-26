@@ -38,18 +38,18 @@
           </svg> Add New Tax Authority</button>
       </div>
       <form [formGroup]="form" (ngSubmit)="submit()" class="mx-5 mr-5 my-5">
-        <!--Name-->
+        <!--Name [placeholder]="tax?.name"-->
         <div class="row">
           <div class="col form-group">
             <label for="name" class="form-label">Name</label>
-            <input id="name" formControlName="name" type="text" name="name" class="form-control" [placeholder]="tax?.name" required>
+            <input id="name" formControlName="name" type="text" name="name" class="form-control" value={{tax?.name}} required>
           </div>
 
 
           <!--Country Name-->
           <div class="col form-group">
             <label for="taxtype" class="form-label">Country Name</label>
-            <select class="form-select" data-style="btn-primary" formControlName="country" name="country" id="country">
+            <select class="form-select" value={{tax?.country}} data-style="btn-primary" formControlName="country" name="country" id="country">
               <option value="India">India</option>
               <option value="USA">USA</option>
             </select>
@@ -58,32 +58,32 @@
           <!-- Tax Type -->
           <div class="col form-group">
             <label for="taxtype" class="form-label">Tax Type</label>
-            <select class="form-select" data-style="btn-primary" formControlName="taxtype" name="taxtype" id="taxtype">
+            <select class="form-select" value={{tax?.taxtype}} data-style="btn-primary" formControlName="taxtype" name="taxtype" id="taxtype">
               <option value="GST">GST</option>
-              <option value="incometax">Income Tax</option>
+              <option value="Income Tax">Income Tax</option>
             </select>
           </div>
         </div>
 
-        <!--Zone-->
+        <!--Zone [placeholder]="tax?.zone"-->
         <div class="row my-5">
           <div class="col form-group mb-3">
             <label for="name" class="form-label">Zone</label>
-            <input id="name" formControlName="zone" type="text" name="name" class="form-control" [placeholder]="tax?.zone"
+            <input id="name" formControlName="zone" type="text" name="name" class="form-control" value={{tax?.zone}}
               required>
           </div>
 
-          <!--Ward-->
+          <!--Ward [placeholder]="tax?.ward"-->
           <div class="col form-group mb-3">
             <label for="name" class="form-label">Ward</label>
-            <input id="name" formControlName="ward" type="text" name="name" class="form-control" [placeholder]="tax?.ward"
+            <input id="name" formControlName="ward" type="text" name="name" class="form-control" value={{tax?.ward}}
               required>
           </div>
-          <!--Status-->
 
+          <!--Status [placeholder]="tax?.status" -->
           <div class="col form-group mb-3">
             <label for="status" class="form-label">Status</label>
-            <input id="status" formControlName="status" type="text" name="status" class="form-control" [placeholder]="tax?.status"required>
+            <input id="status" formControlName="status" type="text" name="status" class="form-control" value={{tax?.status}} required>
           </div>
 
         </div>
