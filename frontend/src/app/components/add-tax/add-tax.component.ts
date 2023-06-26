@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { TaxService } from 'src/app/app.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+
 
 @Component({
   selector: 'app-add-tax',
@@ -31,6 +33,15 @@ export class AddTaxComponent {
     this.service.addTax(this.data).subscribe(data => {
       // redirect to home page
       this.router.navigate(['/']);
+    });
+  }
+  public useDefault = false;
+
+  public toggle(event: MatSlideToggleChange) {
+    console.log('toggle', event.checked);
+    this.useDefault = event.checked;
+    this.form.patchValue({
+      status: event.checked ? "Active" : "Inactive"
     });
   }
 

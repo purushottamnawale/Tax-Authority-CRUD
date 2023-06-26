@@ -80,12 +80,13 @@
             <input id="name" formControlName="ward" type="text" name="name" class="form-control" placeholder="Ward"
               required>
           </div>
-          <!--Status-->
 
+          <!--Status-->
+          <!-- 
           <div class="col form-group mb-3">
             <label for="status" class="form-label">Status</label>
             <input id="status" formControlName="status" type="text" name="status" class="form-control" required>
-          </div>
+          </div> -->
 
           <!-- <div class="col form-group mb-3 switch-container">
             <label for="status" class="col mb-5">Status</label>
@@ -98,13 +99,23 @@
 
 
           <!-- <div class="col form-group">
-            <label class="form-label">Status</label>
             <div class="form-check">
+              <label class="form-label">Status</label>
               <input class="form-check-input" type="checkbox" formControlName="status" id="status">
               <label class="form-check-label" for="status">Active</label>
             </div>
           </div>
            -->
+
+          <div class="col form-group">
+            <label for="status" class="row form-label" id="status_label">Status</label>
+            <div class="col">
+              <label class="form-check-label" for="status" id="active">Inactive</label>
+              <mat-slide-toggle [checked]="useDefault" (change)="toggle($event)" id="mat-slider"></mat-slide-toggle>
+              <label class="form-check-label" for="status" id="inactive">Active</label>
+            </div>
+          </div>
+
 
 
         </div>
