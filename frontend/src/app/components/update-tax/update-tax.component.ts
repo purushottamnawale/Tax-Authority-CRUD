@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaxService } from 'src/app/app.service';
 import { Tax } from 'src/app/Tax';
@@ -49,6 +50,15 @@ export class UpdateTaxComponent {
     })
 
     this.router.navigate(['/']);
+  }
+  public useDefault = false;
+
+  public toggle(event: MatSlideToggleChange) {
+    console.log('toggle', event.checked);
+    this.useDefault = event.checked;
+    this.form.patchValue({
+      status: event.checked ? "Active" : "Inactive"
+    });
   }
 
 }

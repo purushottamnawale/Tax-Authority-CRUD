@@ -48,25 +48,25 @@
 
 
           <!--Country Name-->
-          <div class="col form-group">
+
+
+          <!-- <div class="col form-group">
             <label for="taxtype" class="form-label">Country Name</label>
             <select class="form-select" data-style="btn-primary" formControlName="country" name="country" id="country">
               <option value="India">India</option>
               <option value="USA">USA</option>
             </select>
-          </div>
-<!-- 
-          <div class="col form-group">
-            <<mat-form-field appearance="fill">
-              <mat-label>Favorite food</mat-label>
-              <mat-select>
-                <mat-option *ngFor="let Country of Country">
-                  {{Country.name}}
-                </mat-option>
-              </mat-select>
-              </mat-form-field>
           </div> -->
 
+          <div class="col form-group">
+            <mat-form-field>
+              <mat-label for="taxtype">Country Name</mat-label>
+              <mat-select formControlName="country" name="country" id="country">
+                <mat-option value="India">India</mat-option>
+                <mat-option value="USA">USA</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
 
           <!-- Tax Type -->
           <div class="col form-group">
@@ -94,31 +94,6 @@
           </div>
 
           <!--Status-->
-          <!-- 
-          <div class="col form-group mb-3">
-            <label for="status" class="form-label">Status</label>
-            <input id="status" formControlName="status" type="text" name="status" class="form-control" required>
-          </div> -->
-
-          <!-- <div class="col form-group mb-3 switch-container">
-            <label for="status" class="col mb-5">Status</label>
-            <label class="pure-material-switch">
-              <input type="checkbox" checked id="status" formControlName="status" name="status" class="form-control">
-              <span class="checkmark">Inactive</span>
-            </label>
-            <span class="mx-2">Active</span>
-          </div> -->
-
-
-          <!-- <div class="col form-group">
-            <div class="form-check">
-              <label class="form-label">Status</label>
-              <input class="form-check-input" type="checkbox" formControlName="status" id="status">
-              <label class="form-check-label" for="status">Active</label>
-            </div>
-          </div>
-           -->
-
           <div class="col form-group">
             <label for="status" class="row form-label" id="status_label">Status</label>
             <div class="col">

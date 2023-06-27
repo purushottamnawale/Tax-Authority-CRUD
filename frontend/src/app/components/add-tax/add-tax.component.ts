@@ -3,12 +3,14 @@ import { TaxService } from 'src/app/app.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @Component({
   selector: 'app-add-tax',
   templateUrl: './add-tax.component.html',
-  styleUrls: ['./add-tax.component.css']
+  styleUrls: ['./add-tax.component.css'],
 })
 export class AddTaxComponent {
 
@@ -44,6 +46,4 @@ export class AddTaxComponent {
       status: event.checked ? "Active" : "Inactive"
     });
   }
-
-
 }

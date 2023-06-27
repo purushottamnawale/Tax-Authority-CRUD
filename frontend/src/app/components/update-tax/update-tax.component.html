@@ -80,10 +80,13 @@
               required>
           </div>
 
-          <!--Status [placeholder]="tax?.status" -->
-          <div class="col form-group mb-3">
-            <label for="status" class="form-label">Status</label>
-            <input id="status" formControlName="status" type="text" name="status" class="form-control" value={{tax?.status}} required>
+          <div class="col form-group">
+            <label for="status" class="row form-label" id="status_label">Status</label>
+            <div class="col">
+              <label class="form-check-label" for="status" id="active">Inactive</label>
+              <mat-slide-toggle [checked]="useDefault" (change)="toggle($event)" id="mat-slider"></mat-slide-toggle>
+              <label class="form-check-label" for="status" id="inactive">Active</label>
+            </div>
           </div>
 
         </div>
