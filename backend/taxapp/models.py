@@ -10,7 +10,7 @@ class Country(models.Model):
 class Tax(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
-    country = models.CharField(max_length=20)
+    country = models.CharField(max_length=255)
     # country = models.ForeignKey(Country,on_delete=models.CASCADE)
     taxtype = models.CharField(max_length=10)
     zone=models.CharField(max_length=255, null=True, blank=True)

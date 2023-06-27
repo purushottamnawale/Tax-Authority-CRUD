@@ -18,11 +18,17 @@ export class TaxService {
   getTaxes(): Observable<Tax[]> {
     return this.http.get<Tax[]>(this.url);
   }
-
+  
   getTax(id: number): Observable<Tax> {
     return this.http.get<Tax>(`${this.url}${id}`);
   }
-
+  
+  getCountry(): Observable<Tax[]> {
+    return this.http.get<Tax[]>(this.url);
+  }
+  
+  
+  
   updateTax(id: number, tax: Tax): Observable<Tax> {
     return this.http.put<Tax>(`${this.url}${id}/`, tax);
   }

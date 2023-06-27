@@ -18,6 +18,7 @@ export class ViewTaxComponent {
   ngOnInit(): void {
     this.taxService.getTaxes().subscribe(data => {
       this.taxes = data;
+
       console.log(data)
     });
   }
