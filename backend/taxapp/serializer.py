@@ -2,18 +2,20 @@ from rest_framework import serializers
 from .models import Tax,Country,TaxRate,TaxRateDetails
 
 class CountrySerializer(serializers.ModelSerializer):
-    country = serializers.StringRelatedField()
     class Meta:
         model=Country
         fields=('pk','country')
 
+#serializer.py
 class TaxSerializer(serializers.ModelSerializer):
-    country = serializers.StringRelatedField()  # Represents country as string instead of primary key
-    country_name = serializers.CharField(source='country')  # Add country_name field
-    
+    country = serializers.SlugRelatedField(
+        slug_field='country', queryset=Country.objects.all())
+
     class Meta:
         model = Tax
-        fields = ('name', 'country', 'taxtype','zone','ward','status')
+        fields = ('name', 'country', 'taxtype', 'zone', 'ward', 'status')
+
+
 
 class TaxRateSerializer(serializers.ModelSerializer):
     class Meta:

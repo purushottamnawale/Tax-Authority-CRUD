@@ -21,5 +21,6 @@ from taxapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('taxapp.urls')),
-    path('', views.TaxRateList.as_view()),
+    # path('', views.TaxRateList.as_view()),
+    path('', views.TaxList.as_view()),
 ]

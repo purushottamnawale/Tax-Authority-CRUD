@@ -30,11 +30,11 @@ def helloWorld(HttpRequest):
     return HttpResponse("Hello World")
 
 @csrf_exempt
-def CountryView(request,pk=0):  
-    if request.method=='GET':
-        country = Country.objects.all()
-        country_serializer = CountrySerializer(country, many=True)
-        return JsonResponse(country_serializer.data, safe=False)
+def CountryView(request, pk=0):  
+    if request.method == 'GET':
+        countries = Country.objects.all()
+        country_data = [{'country': country.country} for country in countries]
+        return JsonResponse(country_data, safe=False)
     
     elif request.method=='POST':
         country_data=JSONParser().parse(request)
@@ -59,11 +59,14 @@ def CountryView(request,pk=0):
         return JsonResponse("Deleted Succeffully!!", safe=False)
     
 @csrf_exempt
-def TaxView(request,pk=0):  
-    if request.method=='GET':
-        tax = Tax.objects.all()
-        tax_serializer = TaxSerializer(tax, many=True)
-        return JsonResponse(tax_serializer.data, safe=False)
+def TaxView(request, pk=0):  
+    if request.method == 'GET':
+        taxes = Tax.objects.all()
+        tax_serializer = TaxSerializer(taxes, many=True)
+        tax_data = tax_serializer.data
+        for tax in tax_data:
+            tax['country'] = tax['country']['country']
+        return JsonResponse(tax_data, safe=False)
     
     elif request.method=='POST':
         tax_data=JSONParser().parse(request)
