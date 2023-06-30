@@ -88,10 +88,10 @@ WSGI_APPLICATION = 'main.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'taxdb',
+        'NAME': 'taxrate6',
         'USER': 'postgres',
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': '5432',    
         'PASSWORD': 'rhythm'
     }
 }

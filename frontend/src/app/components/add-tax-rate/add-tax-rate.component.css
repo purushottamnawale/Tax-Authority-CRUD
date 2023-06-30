@@ -14,3 +14,10 @@
 #inactive {
     margin-left: 10px;
 }
+
+.required::after{
+    content:" *";
+    color:red;
+    font-size:20px;
+}
+

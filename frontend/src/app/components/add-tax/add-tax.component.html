@@ -30,7 +30,7 @@
   <div class="my-5">
     <div class="mx-5 mr-5">
       <div class="container d-flex justify-content-between">
-        <h3 class="text-left d-inline" id="tax_authority">Tax Authority</h3>
+        <h2 class="text-left d-inline" id="tax_authority">Tax Authority</h2>
         <button class="btn btn-primary d-inline" routerLink="/"><svg xmlns="http://www.w3.org/2000/svg" width="16"
             height="16" fill="currentColor" class="bi bi-calendar-fill" viewBox="0 0 16 16">
             <path
@@ -48,24 +48,11 @@
 
 
           <!--Country Name-->
-
-
-          <!-- <div class="col form-group">
-            <label for="taxtype" class="form-label">Country Name</label>
-            <select class="form-select" data-style="btn-primary" formControlName="country" name="country" id="country">
-              <option value="India">India</option>
-              <option value="USA">USA</option>
-            </select>
-          </div> -->
-
           <div class="col form-group">
-            <mat-form-field>
-              <mat-label for="taxtype">Country Name</mat-label>
-              <mat-select formControlName="country" name="country" id="country">
-                <mat-option value="India">India</mat-option>
-                <mat-option value="USA">USA</mat-option>
-              </mat-select>
-            </mat-form-field>
+              <label for="country">Country Name</label>
+              <select class="form-select" data-style="btn-primary" formControlName="country" name="country" id="country">
+                <option [value]="Country.pk" *ngFor="let Country of CountryList">{{Country.country}}</option>
+              </select>
           </div>
 
           <!-- Tax Type -->
@@ -102,9 +89,6 @@
               <label class="form-check-label" for="status" id="inactive">Active</label>
             </div>
           </div>
-
-
-
         </div>
         <div class="row">
           <div class="col form-group d-flex justify-content-center my-3">

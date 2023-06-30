@@ -3,8 +3,9 @@ import { TaxService } from 'src/app/app.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { Country } from 'src/app/Tax';
 
 
 @Component({
@@ -16,10 +17,25 @@ export class AddTaxComponent {
 
   constructor(private service: TaxService, private router: Router) { }
 
+  CountryList: Country[] = [];
+
   ngOnInit(): void {
+    this.refreshList();
   }
 
+  refreshList() {
+    this.service.getCountry().subscribe((data) => {
+      console.log(data);
+      this.CountryList = data;
+      this.CountryList.forEach((country: Country) => {
+        console.log(country.pk, country.country);
+      });
+    });
+  }
+
+
   data: any
+
 
   form = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -37,6 +53,7 @@ export class AddTaxComponent {
       this.router.navigate(['/']);
     });
   }
+
   public useDefault = false;
 
   public toggle(event: MatSlideToggleChange) {

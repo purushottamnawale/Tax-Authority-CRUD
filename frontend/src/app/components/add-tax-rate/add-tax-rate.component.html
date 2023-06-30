@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Tax Rate</title>
+</head>
+
+<body>
+    <!--Navbar consists only Home and Add Tax-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Welcome to Bajaj Finserv Limited</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+                    <a class="nav-link" routerLink="/add">Add Tax Rate</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--Form to add tax  name: string email: string gender: string-->
+
+    <div class="my-5">
+        <div class="mx-5 mr-5">
+            <div class="container d-flex justify-content-between">
+                <h2 class="text-left d-inline" id="tax_authority">Tax Authority</h2>
+                <button class="btn btn-primary d-inline" routerLink="/"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="16" height="16" fill="currentColor" class="bi bi-calendar-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5h16V4H0V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5z" />
+                    </svg> List of Tax Authority</button>
+            </div>
+
+            <form [formGroup]="form" (ngSubmit)="addTaxRate()" class="mx-5 mr-5 my-5">
+                <!--Tax Rate Name-->
+                <div class="row">
+                    <div class="col form-group">
+                        <label for="taxratename" class="form-label required" id="taxratename">Tax rate name</label>
+                        <input formControlName="taxratename" type="text" name="taxratename" class="form-control"
+                            placeholder="Tax Rate Name" required>
+                    </div>
+
+                    <!-- Tax Authority -->
+                    <div class="col form-group">
+                        <label for="taxauthority" class="form-label required">Tax authority</label>
+                        <select class="form-select" data-style="btn-primary" formControlName="taxauthority"
+                            name="taxauthority" id="taxauthority">
+                            <option value="">State Government </option>
+                            <option value="">Central Government </option>
+                        </select>
+                    </div>
+
+                    <!-- Tax Type -->
+                    <div class="col form-group">
+                        <label for="taxtype" class="form-label required">Tax type</label>
+                        <select class="form-select" data-style="btn-primary" formControlName="taxtype" name="taxtype"
+                            id="taxtype">
+                            <option value="GST">GST</option>
+                            <option value="incometax">Income Tax</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row my-5">
+                    <!--Status-->
+                    <div class="col form-group">
+                        <label for="status" class="row form-label" id="status_label">Status</label>
+                        <div class="col">
+                            <label class="form-check-label" for="status" id="active">Inactive</label>
+                            <mat-slide-toggle [checked]="useDefault" (change)="toggle($event)"
+                                id="mat-slider"></mat-slide-toggle>
+                            <label class="form-check-label" for="status" id="inactive">Active</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col form-group d-flex justify-content-center my-3">
+                        <input class="btn btn-primary" type="submit" value="Submit">
+                        <input type="reset" class="btn btn-secondary mx-2 mr-2">
+                        <button type="back" class="btn btn-danger" routerLink="/">Back</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

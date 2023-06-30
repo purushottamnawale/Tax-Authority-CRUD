@@ -9,16 +9,22 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatSelectModule} from '@angular/material/select';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { AddTaxRateComponent } from './components/add-tax-rate/add-tax-rate.component';
+import { ViewTaxRateComponent } from './components/view-tax-rate/view-tax-rate.component';
+import { TaxRateService } from './app.service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     AddTaxComponent,
     UpdateTaxComponent,
-    ViewTaxComponent
+    ViewTaxComponent,
+    AddTaxRateComponent,
+    ViewTaxRateComponent
   ],
   imports: [
     BrowserModule,
@@ -27,11 +33,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     ReactiveFormsModule,
     MatSlideToggleModule,
     BrowserAnimationsModule,
-    MatFormFieldModule, 
-    MatInputModule, 
+    MatFormFieldModule,
+    MatInputModule,
     MatSelectModule
   ],
-  providers: [],
+  providers: [TaxRateService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

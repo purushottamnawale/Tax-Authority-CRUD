@@ -11,9 +11,7 @@ import { TaxService } from '../../app.service';
 export class ViewTaxComponent {
   taxes: any | undefined;
 
-  constructor(private taxService: TaxService) { 
-   
-  }
+  constructor(private taxService: TaxService) { }
 
   ngOnInit(): void {
     this.taxService.getTaxes().subscribe(data => {
