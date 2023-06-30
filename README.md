@@ -2,8 +2,10 @@
 2) Go to Frontend, Open with terminal, type npm start
 
 
-Notes : 
-1. Database used is PostgreSQL
+Notes :
+Frontend : Angular
+Backend : Django
+Database : PostgreSQL
 
 
 
