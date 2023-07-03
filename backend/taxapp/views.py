@@ -18,13 +18,9 @@ class TaxRateList(generics.ListCreateAPIView):
     queryset = TaxRate.objects.all()
     serializer_class = TaxRateSerializer
 
-class TaxDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Tax.objects.all()
-    serializer_class = TaxSerializer
-
-class TaxRateDetailsList(generics.RetrieveUpdateDestroyAPIView):
-    queryset = TaxRate.objects.all()
-    serializer_class = TaxRateSerializer
+class TaxRateDetailsList(generics.ListCreateAPIView):
+    queryset = TaxRateDetails.objects.all()
+    serializer_class = TaxRateDetailsSerializer
 
 def helloWorld(HttpRequest):
     return HttpResponse("Hello World")
@@ -33,8 +29,8 @@ def helloWorld(HttpRequest):
 def CountryView(request, pk=0):  
     if request.method == 'GET':
         country = Country.objects.all()
-        country_data = CountrySerializer(country,many=True)
-        return JsonResponse(country_data, safe=False)
+        country_serializer = CountrySerializer(country,many=True)
+        return JsonResponse(country_serializer.data, safe=False)
     
     elif request.method=='POST':
         country_data=JSONParser().parse(request)
@@ -63,7 +59,7 @@ def TaxView(request, pk=0):
     if request.method == 'GET':
         tax = Tax.objects.all()
         tax_serializer = TaxSerializer(tax, many=True)
-        return JsonResponse(tax_data, safe=False)
+        return JsonResponse(tax_serializer.data, safe=False)
     
     elif request.method=='POST':
         tax_data=JSONParser().parse(request)

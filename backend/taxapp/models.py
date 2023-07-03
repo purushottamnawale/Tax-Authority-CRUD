@@ -52,7 +52,6 @@ class TaxRateDetails(models.Model):
     tax_rate  = models.DecimalField(default=0, max_digits=10, decimal_places=2, verbose_name='Tax Rate')
     rcm_flag = models.BooleanField(default=False,verbose_name="RCM Flag")
     cess  = models.DecimalField(default=0, max_digits=10, decimal_places=2, verbose_name='CESS',blank=True)
-    is_active = models.BooleanField(default=True, verbose_name='TaxRateDetails Is Active')
     is_deleted = models.BooleanField(default=False, verbose_name="TaxRateDetails Is Deleted")
     created_date_time = models.DateTimeField(verbose_name="TaxRateDetails Created Date Time", auto_now_add=True)
     updated_date_time = models.DateTimeField(default=timezone.localtime, verbose_name="TaxRateDetails Updated Date Time")

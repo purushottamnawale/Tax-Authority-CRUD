@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Tax, TaxRate, TaxRateDetails } from 'src/app/Tax';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TaxRateService } from '../../app.service';
+import { TaxRateService, TaxService } from '../../app.service';
 
 
 @Component({
@@ -15,19 +15,29 @@ import { TaxRateService } from '../../app.service';
 
 export class ViewTaxRateComponent {
 
-  taxrates: any | undefined;
+  taxrates: any[] | undefined;
+  taxes: any={} ;
 
-  constructor(private taxrateService: TaxRateService) { }
+  constructor(
+    private taxRateService: TaxRateService,
+    private taxService: TaxService) { }
 
   ngOnInit(): void {
-    this.taxrateService.getTaxRateList().subscribe(data => {
+    this.taxRateService.getTaxRateList().subscribe(data => {
       this.taxrates = data;
       console.log(data)
+      this.fetchTaxNames();
+    });
+  }
+
+  fetchTaxNames() {
+    this.taxService.getTaxes().subscribe(data => {
+      this.taxes = data;
     });
   }
 
   deleteTaxRate(id: number) {
-    this.taxrateService.deleteTaxRate(id).subscribe(data => {
+    this.taxRateService.deleteTaxRate(id).subscribe(data => {
       console.log(data);
       this.ngOnInit();
     });

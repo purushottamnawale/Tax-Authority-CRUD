@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Tax,TaxRate,TaxRateDetails,Country} from './Tax';
+import { Tax, TaxRate, TaxRateDetails, Country } from './Tax';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ import { Tax,TaxRate,TaxRateDetails,Country} from './Tax';
 
 export class TaxService {
   private url: string = 'http://localhost:8000/api/taxapp/';
-  readonly APIUrl= 'http://localhost:8000/api/taxapp/country/';
+  readonly APIUrl = 'http://localhost:8000/api/taxapp/country/';
 
   constructor(private http: HttpClient) { }
 
@@ -20,11 +20,11 @@ export class TaxService {
   getTaxes(): Observable<Tax[]> {
     return this.http.get<Tax[]>(this.url);
   }
-  
+
   getTax(id: number): Observable<Tax> {
     return this.http.get<Tax>(`${this.url}${id}`);
   }
-  
+
   // getCountry() :Observable<any[]>{
   //   return this.http.get<any[]>(this.APIUrl);
   // }
@@ -49,40 +49,49 @@ export class TaxService {
 
 
 export class TaxRateService {
-  readonly APIUrl= 'http://localhost:8000/api/taxrate/';
-  readonly APIUrl2= 'http://localhost:8000/api/taxratedetails/';
+  readonly APIUrl = 'http://localhost:8000/api/taxrate/';
+  readonly APIUrl2 = 'http://localhost:8000/api/taxapp/';
+  readonly APIUrl3= 'http://localhost:8000/api/taxratedetails/';
   constructor(private http: HttpClient) { }
 
-  getTaxRateList():Observable<any[]>{
+  getTaxRateList(): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl);
   }
 
-  addTaxRate(val:any){
-    return this.http.post(this.APIUrl,val);
+  addTaxRate(val: any) {
+    return this.http.post(this.APIUrl, val);
   }
 
-  updateTaxRate(val:any){
-    return this.http.put(this.APIUrl,val);
+
+  updateTaxRate(val: any) {
+    return this.http.put(this.APIUrl, val);
   }
 
-  deleteTaxRate(val:any){
-    return this.http.delete(this.APIUrl+val);
+  deleteTaxRate(val: any) {
+    return this.http.delete(this.APIUrl + val);
   }
 
-  getTaxRateDetailsList():Observable<any[]>{
+  getTaxAuthority(): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl2);
   }
-
-  addTaxRateDetails(val:any){
-    return this.http.post(this.APIUrl2,val);
+  getTaxRatePK(): Observable<any[]> {
+    return this.http.get<any[]>(this.APIUrl);
   }
 
-  updateTaxRateDetails(val:any){
-    return this.http.put(this.APIUrl2,val);
+  getTaxRateDetailsList(): Observable<any[]> {
+    return this.http.get<any[]>(this.APIUrl3);
   }
 
-  deleteTaxRateDetails(val:any){
-    return this.http.delete(this.APIUrl2+val);
+  addTaxRateDetails(val: any) {
+    return this.http.post(this.APIUrl3, val);
+  }
+
+  updateTaxRateDetails(val: any) {
+    return this.http.put(this.APIUrl3, val);
+  }
+
+  deleteTaxRateDetails(val: any) {
+    return this.http.delete(this.APIUrl3 + val);
   }
 }
 

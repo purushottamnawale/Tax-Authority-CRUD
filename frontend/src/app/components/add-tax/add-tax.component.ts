@@ -17,7 +17,7 @@ export class AddTaxComponent {
 
   constructor(private service: TaxService, private router: Router) { }
 
-  CountryList: Country[] = [];
+  CountryList: any;
 
   ngOnInit(): void {
     this.refreshList();
@@ -32,6 +32,7 @@ export class AddTaxComponent {
       });
     });
   }
+
 
 
   data: any

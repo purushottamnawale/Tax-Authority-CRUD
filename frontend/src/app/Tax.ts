@@ -4,6 +4,7 @@ export interface Country {
 }
 
 export interface Tax {
+    pk: number;
     name: string;
     country: number;
     taxtype: string;
@@ -12,18 +13,30 @@ export interface Tax {
     status: string;
 }
 
+export interface TaxAuthority {
+    pk: number;
+    name: string;
+}
+
+export interface TaxRatePK{
+    pk:number;
+    tax_rate_name:string;
+}
 
 export interface TaxRate {
-    taxratename: string;
-    taxauthority: string;
-    taxtype: string;
-    status: string;
+    tax_rate_name: string;
+    tax_authority_ref_id: number;
+    tax_type_ref_id: string;
+    is_active: string;
 }
 
 export interface TaxRateDetails {
+    header_ref_id:number;
     hsn_sac_no: string;
     description: string;
-    fromdate: number;
+    fromdate: Date;
+    to_date:Date;
     taxrate: number;
-    rcmflag: string;
+    rcm_flag: boolean;
+    cess:number;
 }

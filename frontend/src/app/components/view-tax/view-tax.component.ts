@@ -10,6 +10,8 @@ import { TaxService } from '../../app.service';
 })
 export class ViewTaxComponent {
   taxes: any | undefined;
+  countries: any={} ;
+  
 
   constructor(private taxService: TaxService) { }
 
@@ -18,6 +20,12 @@ export class ViewTaxComponent {
       this.taxes = data;
 
       console.log(data)
+    });
+  }
+
+  fetchTaxNames() {
+    this.taxService.getCountry().subscribe(data => {
+      this.countries = data;
     });
   }
 

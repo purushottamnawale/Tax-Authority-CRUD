@@ -14,6 +14,7 @@ export class AppComponent {
       console.warn("data",data);
       this.getCountry = data
     });
-
   }
+
+  
 }

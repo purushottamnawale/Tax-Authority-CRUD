@@ -12,7 +12,6 @@ const routes: Routes = [
   { path: 'update/:id', component: UpdateTaxComponent},
   { path: 'addtaxrate', component: AddTaxRateComponent},
   { path: 'viewtaxrate', component: ViewTaxRateComponent},
-
 ];
 
 @NgModule({
