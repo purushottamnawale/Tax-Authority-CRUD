@@ -3,8 +3,11 @@
 
 
 Notes :
-Frontend : Angular
-Backend : Django
+
+Frontend : Angular 15 
+
+Backend : Django 4
+
 Database : PostgreSQL
 
 
