@@ -7,7 +7,8 @@ import { AddTaxRateComponent } from './components/add-tax-rate/add-tax-rate.comp
 import { ViewTaxRateComponent } from './components/view-tax-rate/view-tax-rate.component';
 
 const routes: Routes = [
-  { path: '', component: ViewTaxComponent },
+  // { path: '', component: ViewTaxComponent },
+  { path: '', component: AddTaxRateComponent},
   { path: 'add', component: AddTaxComponent },
   { path: 'update/:id', component: UpdateTaxComponent},
   { path: 'addtaxrate', component: AddTaxRateComponent},
