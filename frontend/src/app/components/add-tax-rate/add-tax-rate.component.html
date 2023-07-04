@@ -88,7 +88,7 @@
                                     <th scope="col">Cess</th>
                                 </tr>
                             </thead>
-                            <tbody [formGroup]="taxRateDetilsForm">
+                            <tbody [formGroup]="taxRateDetailsForm">
                                 <ng-container formArrayName="tableRows" *ngFor="let group of getFormControls.controls; let i=index">
                                     <tr [formGroupName]="i">
                                         <td>
@@ -125,7 +125,7 @@
                                         <td>
                                             <div class="col form-group my-4">
                                                 <label class="form-check-label form-control-sm" for="rcm_flag" id="active_tax_details">Inactive</label>
-                                                <!-- <mat-slide-toggle [checked]="taxRateDetilsForm.get('rcm_flag')!.value" (change)="toggle2($event)" class="smaller-slide-toggle" id="mat-slider"></mat-slide-toggle> -->
+                                                <!-- <mat-slide-toggle [checked]="taxRateDetailsForm.get('rcm_flag')!.value" (change)="toggle2($event)" class="smaller-slide-toggle" id="mat-slider"></mat-slide-toggle> -->
                                                 <!-- <mat-slide-toggle [checked]="group.get('rcm_flag')!.value" (change)="toggle2($event)" class="smaller-slide-toggle" id="mat-slider"></mat-slide-toggle> -->
                                                 <mat-slide-toggle formControlName="rcm_flag" (change)="toggle2($event)" class="smaller-slide-toggle" id="mat-slider"></mat-slide-toggle>
                                                 <label class="form-check-label" for="rcm_flag" id="inactive_tax_details">Active</label>
@@ -142,8 +142,6 @@
                         </table>
                     </div>
                 </form>
-
-
                 <div class="row">
                     <div class="col form-group d-flex justify-content-center my-3">
                         <input class="btn btn-primary" type="submit" value="Submit">
