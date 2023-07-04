@@ -14,7 +14,7 @@ import { Tax, TaxRatePK } from 'src/app/Tax';
   styleUrls: ['./add-tax-rate.component.css'],
 })
 export class AddTaxRateComponent {
-  public taxRateDetilsForm!: FormGroup;
+  public taxRateDetilsForm: FormGroup;
 
 
   constructor(private service: TaxRateService, private router: Router, private fb: FormBuilder) {
@@ -29,8 +29,8 @@ export class AddTaxRateComponent {
       header_ref_id: new FormControl<number | null>(null, Validators.required),
       hsn_sac_no: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
-      from_date: new FormControl('', Validators.required),
-      to_date: new FormControl('', Validators.required),
+      from_date: new FormControl(new Date(), Validators.required),
+      to_date: new FormControl(new Date(), Validators.required),
       tax_rate: new FormControl('', Validators.required),
       rcm_flag: new FormControl(true,),
       cess: new FormControl('', Validators.required),

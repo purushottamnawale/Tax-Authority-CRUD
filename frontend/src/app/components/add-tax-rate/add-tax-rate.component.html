@@ -13,8 +13,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Welcome to Bajaj Finserv Limited</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -40,15 +39,13 @@
                 <div class="row">
                     <div class="col form-group">
                         <label for="tax_rate_name" class="form-label required" id="tax_rate_name">Tax rate name</label>
-                        <input formControlName="tax_rate_name" type="text" name="tax_rate_name" class="form-control"
-                            placeholder="Tax Rate Name" required>
+                        <input formControlName="tax_rate_name" type="text" name="tax_rate_name" class="form-control" placeholder="Tax Rate Name" required>
                     </div>
 
                     <!-- Tax Authority -->
                     <div class="col form-group">
                         <label for="tax_authority_ref_id" class="form-label required">Tax authority</label>
-                        <select class="form-select" data-style="btn-primary" formControlName="tax_authority_ref_id"
-                            name="tax_authority_ref_id" id="tax_authority_ref_id">
+                        <select class="form-select" data-style="btn-primary" formControlName="tax_authority_ref_id" name="tax_authority_ref_id" id="tax_authority_ref_id">
                             <option [value]="taxauthority.pk" *ngFor="let taxauthority of TaxAuthorityList">
                                 {{taxauthority.name}}</option>
                         </select>
@@ -57,8 +54,7 @@
                     <!-- Tax Type -->
                     <div class="col form-group">
                         <label for="tax_type_ref_id" class="form-label required">Tax type</label>
-                        <select class="form-select" data-style="btn-primary" formControlName="tax_type_ref_id"
-                            name="tax_type_ref_id" id="tax_type_ref_id">
+                        <select class="form-select" data-style="btn-primary" formControlName="tax_type_ref_id" name="tax_type_ref_id" id="tax_type_ref_id">
                             <option value="GST">GST</option>
                             <option value="Income Tax">Income Tax</option>
                         </select>
@@ -71,8 +67,7 @@
                         <label for="is_active" class="row form-label" id="is_active_label">Status</label>
                         <div class="col">
                             <label class="form-check-label" for="is_active" id="active">Inactive</label>
-                            <mat-slide-toggle [checked]="form1.get('is_active')!.value" (change)="toggle1($event)"
-                                id="mat-slider"></mat-slide-toggle>
+                            <mat-slide-toggle [checked]="form1.get('is_active')!.value" (change)="toggle1($event)" id="mat-slider"></mat-slide-toggle>
                             <label class="form-check-label" for="is_active" id="inactive">Active</label>
                         </div>
                     </div>
@@ -94,63 +89,51 @@
                                 </tr>
                             </thead>
                             <tbody [formGroup]="taxRateDetilsForm">
-                                <ng-container formArrayName="tableRows" *ngFor="let group of getFormControls.controls; let i=index" [formGroupName]="i">
-                                    <tr>
+                                <ng-container formArrayName="tableRows" *ngFor="let group of getFormControls.controls; let i=index">
+                                    <tr [formGroupName]="i">
                                         <td>
                                             <div class="my-3">
-                                                <button type="button" class="btn btn-default btn-lg" (click)="addRow()"><i
-                                                        class="fa-solid fa-square-plus"
-                                                        style="color: #b95bf2;"></i></button>
-                                                <button type="button" class="btn btn-default btn-lg"><i
-                                                        class="fa-solid fa-square-minus"
-                                                        style="color: #f11616;"></i></button>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col form-group my-4" *ngIf="group.get('hsn_sac_no')?.errors">
-                                                <input formControlName="hsn_sac_no" type="text" name="hsn_sac_no"
-                                                    class="form-control form-control-sm" placeholder="Hsn sac no">
+                                                <button type="button" class="btn btn-default btn-lg" (click)="addRow()"><i class="fa-solid fa-square-plus" style="color: #b95bf2;"></i></button>
+                                                <button type="button" class="btn btn-default btn-lg" (click)="removeEmployee(i)"><i class="fa-solid fa-square-minus" style="color: #f11616;"></i></button>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="col form-group my-4">
-                                                <input formControlName="description" *ngIf="group.get('description')?.errors" type="text" name="description"
-                                                    class="form-control form-control-sm" placeholder="description">
+                                                <input formControlName="hsn_sac_no" type="text" name="hsn_sac_no" class="form-control form-control-sm" placeholder="Hsn sac no">
                                             </div>
                                         </td>
                                         <td>
                                             <div class="col form-group my-4">
-                                                <input formControlName="from_date" *ngIf="group.get('from_date')?.errors" type="date" name="from_date"
-                                                    class="form-control form-control-sm" placeholder="From Date">
+                                                <input formControlName="description" type="text" name="description" class="form-control form-control-sm" placeholder="description">
                                             </div>
                                         </td>
                                         <td>
                                             <div class="col form-group my-4">
-                                                <input formControlName="to_date" *ngIf="group.get('to_date')?.errors" type="date" name="to_date"
-                                                    class="form-control form-control-sm" placeholder="To Date">
+                                                <input formControlName="from_date" type="date" name="from_date" class="form-control form-control-sm" placeholder="From Date">
                                             </div>
                                         </td>
                                         <td>
                                             <div class="col form-group my-4">
-                                                <input formControlName="tax_rate" *ngIf="group.get('tax_rate')?.errors" type="number" name="tax_rate"
-                                                    class="form-control form-control-sm" placeholder="Tax Rate">
+                                                <input formControlName="to_date" type="date" name="to_date" class="form-control form-control-sm" placeholder="To Date">
                                             </div>
                                         </td>
                                         <td>
                                             <div class="col form-group my-4">
-                                                <label class="form-check-label form-control-sm" for="rcm_flag"
-                                                    id="active_tax_details">Inactive</label>
-                                                <mat-slide-toggle *ngIf="group.get('rcm_flag')?.errors" [checked]="taxRateDetilsForm.get('rcm_flag')!.value"
-                                                    (change)="toggle2($event)" class="smaller-slide-toggle"
-                                                    id="mat-slider"></mat-slide-toggle>
-                                                <label class="form-check-label" for="rcm_flag"
-                                                    id="inactive_tax_details">Active</label>
+                                                <input formControlName="tax_rate" type="number" name="tax_rate" class="form-control form-control-sm" placeholder="Tax Rate">
                                             </div>
                                         </td>
                                         <td>
                                             <div class="col form-group my-4">
-                                                <input formControlName="cess" *ngIf="group.get('cess')?.errors" type="number" name="cess"
-                                                    class="form-control form-control-sm" placeholder="Cess">
+                                                <label class="form-check-label form-control-sm" for="rcm_flag" id="active_tax_details">Inactive</label>
+                                                <!-- <mat-slide-toggle [checked]="taxRateDetilsForm.get('rcm_flag')!.value" (change)="toggle2($event)" class="smaller-slide-toggle" id="mat-slider"></mat-slide-toggle> -->
+                                                <!-- <mat-slide-toggle [checked]="group.get('rcm_flag')!.value" (change)="toggle2($event)" class="smaller-slide-toggle" id="mat-slider"></mat-slide-toggle> -->
+                                                <mat-slide-toggle formControlName="rcm_flag" (change)="toggle2($event)" class="smaller-slide-toggle" id="mat-slider"></mat-slide-toggle>
+                                                <label class="form-check-label" for="rcm_flag" id="inactive_tax_details">Active</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="col form-group my-4">
+                                                <input formControlName="cess" type="number" name="cess" class="form-control form-control-sm" placeholder="Cess">
                                             </div>
                                         </td>
                                     </tr>
