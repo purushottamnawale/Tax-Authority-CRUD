@@ -2,6 +2,9 @@
 2) Go to Frontend, Open with terminal, type npm start
 
 
+Clone the Repository:
+```git clone https://github.com/purushottamnawale/Tax-Authority-CRUD.git```
+
 Notes :
 
 Frontend : Angular 15 
