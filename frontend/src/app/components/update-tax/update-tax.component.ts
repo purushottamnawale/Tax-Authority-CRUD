@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaxService } from 'src/app/app.service';
-import { Tax } from 'src/app/Tax';
+import { Country, Tax } from 'src/app/Tax';
 
 @Component({
   selector: 'app-update-tax',
@@ -12,28 +12,63 @@ import { Tax } from 'src/app/Tax';
 })
 export class UpdateTaxComponent {
 
-  tax?: any
+  tax: any
   data: any
+  CountryList: any;
+  form:FormGroup;
 
-
-  constructor(private service: TaxService, private route: ActivatedRoute, private router : Router) { }
+  constructor(private service: TaxService, private route: ActivatedRoute, private router : Router) {
+    this.form = new FormGroup({
+      name: new FormControl('', [Validators.required]),
+      country: new FormControl('', [Validators.required]),
+      taxtype: new FormControl('', Validators.required),
+      zone: new FormControl('', Validators.required),
+      ward: new FormControl('', Validators.required),
+      status: new FormControl('', Validators.required),
+    });
+   }
 
   ngOnInit(): void {
-    let id = this.route.snapshot.params['id'];
-    this.service.getTax(id).subscribe(data => {
+    let pk = this.route.snapshot.params['pk'];
+    this.service.getTax(pk).subscribe(data => {
       this.tax = data
       console.log(this.tax)
+      this.populateForm();
     })
+    this.refreshList();
+
   }
 
-  form = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    country: new FormControl('', [Validators.required]),
-    taxtype: new FormControl('', Validators.required),
-    zone: new FormControl('', Validators.required),
-    ward: new FormControl('', Validators.required),
-    status: new FormControl('', Validators.required),
-  })
+  refreshList() {
+    this.service.getCountry().subscribe((data) => {
+      console.log(data);
+      this.CountryList = data;
+      this.CountryList.forEach((country: Country) => {
+        // console.log(country.pk, country.country);
+      });
+    });
+  }
+
+  // form = new FormGroup({
+  //   name: new FormControl('', [Validators.required]),
+  //   country: new FormControl('', [Validators.required]),
+  //   taxtype: new FormControl('', Validators.required),
+  //   zone: new FormControl('', Validators.required),
+  //   ward: new FormControl('', Validators.required),
+  //   status: new FormControl('', Validators.required),
+  // })
+
+  populateForm(): void {
+    this.form.patchValue({
+      name: this.tax.name,
+      country: this.tax.country,
+      taxtype: this.tax.taxtype,
+      zone: this.tax.zone,
+      ward: this.tax.ward,
+      status: this.tax.status
+    });
+  }
+
 
   submit(){
     this.data = this.form.value
@@ -45,7 +80,7 @@ export class UpdateTaxComponent {
     this.tax.status = this.data.status
     console.log(this.data)
     
-    this.service.updateTax(this.tax?.id, this.tax).subscribe(data => {
+    this.service.updateTax(this.tax?.pk, this.tax).subscribe(data => {
       console.log(data)
     })
 

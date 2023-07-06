@@ -5,12 +5,14 @@ import { UpdateTaxComponent } from './components/update-tax/update-tax.component
 import { ViewTaxComponent } from './components/view-tax/view-tax.component';
 import { AddTaxRateComponent } from './components/add-tax-rate/add-tax-rate.component';
 import { ViewTaxRateComponent } from './components/view-tax-rate/view-tax-rate.component';
+import { UpdateTaxRateComponent } from './components/update-tax-rate/update-tax-rate.component';
 
 const routes: Routes = [
-  // { path: '', component: ViewTaxComponent },
-  { path: '', component: AddTaxRateComponent},
+  { path: 'view', component: ViewTaxComponent },
+  { path: '', component: ViewTaxRateComponent},
   { path: 'add', component: AddTaxComponent },
-  { path: 'update/:id', component: UpdateTaxComponent},
+  { path: 'update/:pk', component: UpdateTaxComponent},
+  { path: 'updatetaxrate/:pk', component: UpdateTaxRateComponent},
   { path: 'addtaxrate', component: AddTaxRateComponent},
   { path: 'viewtaxrate', component: ViewTaxRateComponent},
 ];

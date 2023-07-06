@@ -1,24 +1,20 @@
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render
-from requests import request
 from rest_framework import generics
 from .models import Tax,Country,TaxRate,TaxRateDetails
 from .serializer import TaxSerializer,CountrySerializer,TaxRateSerializer,TaxRateDetailsSerializer
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import render
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
-from django.core.files.storage import default_storage
 
-class TaxList(generics.ListCreateAPIView):
+class TaxList(generics.RetrieveUpdateDestroyAPIView):
     queryset = Tax.objects.all()
     serializer_class = TaxSerializer
 
-class TaxRateList(generics.ListCreateAPIView):
+class TaxRateList(generics.RetrieveUpdateDestroyAPIView):
     queryset = TaxRate.objects.all()
     serializer_class = TaxRateSerializer
 
-class TaxRateDetailsList(generics.ListCreateAPIView):
+class TaxRateDetailsList(generics.RetrieveUpdateDestroyAPIView):
     queryset = TaxRateDetails.objects.all()
     serializer_class = TaxRateDetailsSerializer
 
@@ -57,9 +53,17 @@ def CountryView(request, pk=0):
 @csrf_exempt
 def TaxView(request, pk=0):  
     if request.method == 'GET':
-        tax = Tax.objects.all()
-        tax_serializer = TaxSerializer(tax, many=True)
-        return JsonResponse(tax_serializer.data, safe=False)
+        if pk == 0:
+            tax = Tax.objects.all()
+            tax_serializer = TaxSerializer(tax, many=True)
+            return JsonResponse(tax_serializer.data, safe=False)
+        else:
+            try:
+                tax = Tax.objects.get(pk=pk)
+                tax_serializer = TaxSerializer(tax)
+                return JsonResponse(tax_serializer.data, safe=False)
+            except Tax.DoesNotExist:
+                return JsonResponse("Entry not found.", safe=False)
     
     elif request.method=='POST':
         tax_data=JSONParser().parse(request)
@@ -71,7 +75,7 @@ def TaxView(request, pk=0):
     
     elif request.method=='PUT':
         tax_data = JSONParser().parse(request)
-        tax=Tax.objects.get(TaxId=tax_data['TaxId'])
+        tax=Tax.objects.get(pk=tax_data['pk'])
         tax_serializer=TaxSerializer(tax,data=tax_data)
         if tax_serializer.is_valid():
             tax_serializer.save()
@@ -79,9 +83,10 @@ def TaxView(request, pk=0):
         return JsonResponse("Failed to Update.", safe=False)
 
     elif request.method=='DELETE':
-        tax=Tax.objects.get(TaxId=pk)
+        tax=Tax.objects.get(pk=pk)
         tax.delete()
         return JsonResponse("Deleted Succeffully!!", safe=False)
+
     
 @csrf_exempt
 def TaxRateView(request,pk=0):  
@@ -108,7 +113,7 @@ def TaxRateView(request,pk=0):
         return JsonResponse("Failed to Update.", safe=False)
 
     elif request.method=='DELETE':
-        taxrate=TaxRate.objects.get(TaxRateId=pk)
+        taxrate=TaxRate.objects.get(pk=pk)
         taxrate.delete()
         return JsonResponse("Deleted Succeffully!!", safe=False)
 

@@ -23,24 +23,31 @@ export class ViewTaxRateComponent {
     private taxService: TaxService) { }
 
   ngOnInit(): void {
+    this.fetchTaxNames();
     this.taxRateService.getTaxRateList().subscribe(data => {
       this.taxrates = data;
       console.log(data)
-      this.fetchTaxNames();
     });
   }
 
   fetchTaxNames() {
     this.taxService.getTaxes().subscribe(data => {
-      this.taxes = data;
+      this.taxes = data.reduce((obj:any,tax:any)=>{
+        obj[tax.pk]=tax.name;
+        return obj
+      },{});
+      console.log(data);
     });
   }
 
-  deleteTaxRate(id: number) {
-    this.taxRateService.deleteTaxRate(id).subscribe(data => {
+
+  deleteTaxRate(pk: number) {
+    this.taxRateService.deleteTaxRate(pk).subscribe(data => {
       console.log(data);
       this.ngOnInit();
     });
   }
+
+  
 
 }

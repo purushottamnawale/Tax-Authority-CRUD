@@ -16,21 +16,27 @@ export class ViewTaxComponent {
   constructor(private taxService: TaxService) { }
 
   ngOnInit(): void {
+    this.fetchTaxNames();
     this.taxService.getTaxes().subscribe(data => {
       this.taxes = data;
-
-      console.log(data)
+      // console.log(data)
     });
   }
-
+ 
   fetchTaxNames() {
     this.taxService.getCountry().subscribe(data => {
-      this.countries = data;
+      // Create a mapping object using country ID as the key
+      this.countries = data.reduce((obj: any, country: any) => {
+        obj[country.pk] = country.country;
+        return obj;
+      }, {});
+      // console.log(data);
     });
   }
-
-  deleteTax(id: number) {
-    this.taxService.deleteTax(id).subscribe(data => {
+  
+  
+  deleteTax(pk: number) {
+    this.taxService.deleteTax(pk).subscribe(data => {
       console.log(data);
       this.ngOnInit();
     });

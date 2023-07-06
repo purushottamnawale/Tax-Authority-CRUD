@@ -33,10 +33,7 @@ export class AddTaxComponent {
     });
   }
 
-
-
   data: any
-
 
   form = new FormGroup({
     name: new FormControl('', Validators.required),

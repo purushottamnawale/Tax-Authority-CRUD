@@ -11,7 +11,7 @@ export class AppComponent {
   getCountry: any;
   constructor(private getCountryData: TaxService) {
     getCountryData.getCountry().subscribe((data) => {
-      console.warn("data",data);
+      // console.warn("data",data);
       this.getCountry = data
     });
   }

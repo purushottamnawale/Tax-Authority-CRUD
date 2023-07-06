@@ -28,23 +28,23 @@ TAX_TYPE_CHOICES = (
 
 class TaxRate(models.Model):
     tax_rate_name = models.CharField(max_length=30, verbose_name='Tax Rate Name')
-    tax_authority_ref_id =  models.ForeignKey(Tax, verbose_name="Tax Authority Ref ID",on_delete=models.PROTECT)
+    tax_authority_ref_id =  models.ForeignKey(Tax, verbose_name="Tax Authority Ref ID",on_delete=models.CASCADE)
     tax_type_ref_id = models.CharField(max_length=50, verbose_name="Tax Type Ref ID",choices=TAX_TYPE_CHOICES)    
     is_active = models.BooleanField(default=True, verbose_name='TaxRate Is Active')
     is_deleted = models.BooleanField(default=False, verbose_name="TaxRate Is Deleted")
     created_date_time = models.DateTimeField(verbose_name="TaxRate Created Date Time", auto_now_add=True)
     updated_date_time = models.DateTimeField(default=timezone.localtime, verbose_name="TaxRate Updated Date Time")
 
-    def delete(self):
-        self.is_deleted = True
-        self.is_active = False
-        self.save()    
+    # def delete(self):
+    #     self.is_deleted = True
+    #     self.is_active = False
+    #     self.save()    
 
     def __str__(self):
         return self.tax_rate_name
 
 class TaxRateDetails(models.Model):
-    header_ref_id = models.ForeignKey(TaxRate,verbose_name="TaxRateDetails Header Ref ID",on_delete=models.CASCADE,related_name='initialItemRow')
+    header_ref_id = models.ForeignKey(TaxRate,verbose_name="TaxRateDetails Header Ref ID",on_delete=models.CASCADE,related_name='tax_rate_details')
     hsn_sac_no = models.CharField(max_length=30, default=0,verbose_name='HSN or SAC No')
     description = models.CharField(max_length=30, verbose_name='Description',blank=True)
     from_date = models.DateField(verbose_name="TaxRateDetails From Date", auto_now_add=False)
@@ -57,7 +57,10 @@ class TaxRateDetails(models.Model):
     updated_date_time = models.DateTimeField(default=timezone.localtime, verbose_name="TaxRateDetails Updated Date Time")
 
 
-    def delete(self):
-        self.is_deleted = True
-        self.is_active = False
-        self.save()
+    # def delete(self):
+    #     self.is_deleted = True
+    #     self.is_active = False
+    #     self.save()
+
+    def __str__(self):
+        return self.tax_rate_name

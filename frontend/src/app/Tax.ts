@@ -24,6 +24,7 @@ export interface TaxRatePK{
 }
 
 export interface TaxRate {
+    pk:number;
     tax_rate_name: string;
     tax_authority_ref_id: number;
     tax_type_ref_id: string;
@@ -31,7 +32,6 @@ export interface TaxRate {
 }
 
 export interface TaxRateDetails {
-    header_ref_id:number;
     hsn_sac_no: string;
     description: string;
     fromdate: Date;

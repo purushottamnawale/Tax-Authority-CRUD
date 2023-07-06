@@ -17,12 +17,12 @@ export class TaxService {
     return this.http.post<Tax>(this.url, tax);
   }
 
-  getTaxes(): Observable<Tax[]> {
-    return this.http.get<Tax[]>(this.url);
+  getTaxes(): Observable<any[]> {
+    return this.http.get<any[]>(this.url);
   }
 
-  getTax(id: number): Observable<Tax> {
-    return this.http.get<Tax>(`${this.url}${id}`);
+  getTax(pk: number): Observable<Tax> {
+    return this.http.get<Tax>(`${this.url}${pk}`);
   }
 
   // getCountry() :Observable<any[]>{
@@ -33,14 +33,17 @@ export class TaxService {
     return this.http.get<Country[]>(this.APIUrl);
   }
 
-  updateTax(id: number, tax: Tax): Observable<Tax> {
-    return this.http.put<Tax>(`${this.url}${id}/`, tax);
+  updateTax(pk: number, tax: Tax): Observable<Tax> {
+    return this.http.put<Tax>(`${this.url}${pk}/`, tax);
   }
 
-  deleteTax(id: number): Observable<Tax> {
-    return this.http.delete<Tax>(`${this.url}${id}/`);
-  }
+  // updateTax(val: any) {
+  //   return this.http.put(this.url, val);
+  // }
 
+  deleteTax(pk: number): Observable<Tax> {
+    return this.http.delete<Tax>(`${this.url}${pk}/`);
+  }
 }
 
 @Injectable({
@@ -51,24 +54,31 @@ export class TaxService {
 export class TaxRateService {
   readonly APIUrl = 'http://localhost:8000/api/taxrate/';
   readonly APIUrl2 = 'http://localhost:8000/api/taxapp/';
-  readonly APIUrl3= 'http://localhost:8000/api/taxratedetails/';
+  readonly APIUrl3 = 'http://localhost:8000/api/taxratedetails/';
   constructor(private http: HttpClient) { }
 
   getTaxRateList(): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl);
+  }
+  getTaxRate(pk: number): Observable<TaxRate> {
+    return this.http.get<TaxRate>(`${this.APIUrl}${pk}`);
   }
 
   addTaxRate(val: any) {
     return this.http.post(this.APIUrl, val);
   }
 
+  // updateTaxRate(val: any) {
+  //   return this.http.put(this.APIUrl, val);
+  // }
 
-  updateTaxRate(val: any) {
-    return this.http.put(this.APIUrl, val);
+  updateTaxRate(pk: number, tax: TaxRate): Observable<TaxRate> {
+    return this.http.put<TaxRate>(`${this.APIUrl}${pk}/`, tax);
   }
 
-  deleteTaxRate(val: any) {
-    return this.http.delete(this.APIUrl + val);
+
+  deleteTaxRate(pk: number): Observable<TaxRate>{
+    return this.http.delete<TaxRate>(`${this.APIUrl}${pk}/`);
   }
 
   getTaxAuthority(): Observable<any[]> {

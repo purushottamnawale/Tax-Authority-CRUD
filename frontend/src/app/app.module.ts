@@ -6,7 +6,7 @@ import { AddTaxComponent } from './components/add-tax/add-tax.component';
 import { UpdateTaxComponent } from './components/update-tax/update-tax.component';
 import { ViewTaxComponent } from './components/view-tax/view-tax.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { AddTaxRateComponent } from './components/add-tax-rate/add-tax-rate.component';
 import { ViewTaxRateComponent } from './components/view-tax-rate/view-tax-rate.component';
 import { TaxRateService } from './app.service';
+import { UpdateTaxRateComponent } from './components/update-tax-rate/update-tax-rate.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { TaxRateService } from './app.service';
     UpdateTaxComponent,
     ViewTaxComponent,
     AddTaxRateComponent,
-    ViewTaxRateComponent
+    ViewTaxRateComponent,
+    UpdateTaxRateComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,7 @@ import { TaxRateService } from './app.service';
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   providers: [TaxRateService,],
   bootstrap: [AppComponent]
