@@ -12,7 +12,7 @@
   <!--Navbar consists only Home and Add Tax-->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="#">Welcome to Bajaj Finserv Limited</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -29,10 +29,9 @@
   <div class="container my-5">
     <div class="row">
       <div class="d-flex d-flex justify-content-between">
-        <h3 id="tax_authority">List of Tax Authority</h3>
-        <!--Add button -->
-        <button class="btn btn-primary" routerLink="/add"><i class="fa-solid fa-plus"></i> Add New Tax Authority</button>
-        <button class="btn btn-primary" routerLink="/addtaxrate">Add TaxRate</button>
+        <h2 id="tax_authority">List of Tax Rate</h2>
+        <button class="btn btn-primary" id="add_new_tax_authority"routerLink="/add"><i class="fa-solid fa-plus"></i> Add New Tax Authority</button>
+        <button class="btn btn-primary" id="add_tax_rate" routerLink="/addtaxrate"><i class="fa-solid fa-plus"></i> Add Tax Rate</button>
       </div>
       <div class="col my-3">
         <table class="table table-striped my-3">
@@ -54,7 +53,7 @@
               <td>{{taxrate.tax_rate_name}}</td>
               <td>{{taxes[taxrate.tax_authority_ref_id]}}</td>
               <td>{{taxrate.tax_type_ref_id}}</td>
-              <td>{{ taxrate.is_active ? 'Active' : 'Inactive' }}</td>
+              <td>{{taxrate.is_active ? 'Active' : 'Inactive'}}</td>
             </tr>
           </tbody>
         </table>

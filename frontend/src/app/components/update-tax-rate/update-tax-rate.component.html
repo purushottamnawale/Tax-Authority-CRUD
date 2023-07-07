@@ -30,8 +30,7 @@
         <div class="mx-5 mr-5">
             <div class="container d-flex justify-content-between">
                 <h2 class="text-left d-inline" id="tax_authority">Tax Rate</h2>
-                <button class="btn btn-primary d-inline" routerLink="/viewtaxrate"><i class="fa-solid fa-calendar"></i> List of Tax
-                    Authority</button>
+                <button class="btn btn-primary d-inline" routerLink="/viewtaxrate"><i class="fa-solid fa-calendar"></i> List of Tax Rate</button>
             </div>
 
             <form [formGroup]="TaxRateForm" (ngSubmit)="submit()" class="mx-5 mr-5 my-5">
@@ -54,7 +53,7 @@
                     <!-- Tax Type -->
                     <div class="col form-group">
                         <label for="tax_type_ref_id" class="form-label required">Tax type</label>
-                        <select class="form-select" value={{taxrate?.tax_authority_ref_id}} data-style="btn-primary" formControlName="tax_type_ref_id" name="tax_type_ref_id" id="tax_type_ref_id">
+                        <select class="form-select" value={{taxrate?.tax_type_ref_id}} data-style="btn-primary" formControlName="tax_type_ref_id" name="tax_type_ref_id" id="tax_type_ref_id">
                             <option value="GST">GST</option>
                             <option value="Income Tax">Income Tax</option>
                         </select>
@@ -92,7 +91,7 @@
                                 <td>
                                     <div class="my-3">
                                         <button type="button" class="btn btn-default btn-lg" *ngIf="i==0" (click)="addNewRow()"><i class="fa-solid fa-square-plus" style="color: #b95bf2;"></i></button>
-                                        <button type="button" class="btn btn-default btn-lg" *ngIf="i>0"><i class="fa-solid fa-square-minus" style="color: #f11616;"></i></button>
+                                        <button type="button" class="btn btn-default btn-lg" *ngIf="i>0" (click)="deleteRow(i)"><i class="fa-solid fa-square-minus" style="color: #f11616;"></i></button>
                                     </div>
                                 </td>
                                 <td>

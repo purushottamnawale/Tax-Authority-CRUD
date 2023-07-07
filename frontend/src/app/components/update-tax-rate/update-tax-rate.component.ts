@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaxRateService, TaxService } from 'src/app/app.service';
-import { Country, Tax } from 'src/app/Tax';
+import { Country, Tax, TaxAuthority } from 'src/app/Tax';
 
 @Component({
   selector: 'app-update-tax-rate',
@@ -30,7 +30,7 @@ export class UpdateTaxRateComponent {
     let pk = this.route.snapshot.params['pk'];
     this.taxRateService.getTaxRate(pk).subscribe(data => {
       this.taxrate = data
-      console.log(this.taxrate)
+      // console.log(this.taxrate)
       this.populateForm();
     })
     this.refreshList();
@@ -40,7 +40,7 @@ export class UpdateTaxRateComponent {
     this.taxService.getTaxes().subscribe((data) => {
       // console.log(data);
       this.TaxAuthorityList = data;
-      this.TaxAuthorityList.forEach((tax: Tax) => {
+      this.TaxAuthorityList.forEach((tax: TaxAuthority) => {
         // console.log(tax.pk, tax.name);
       });
     });
@@ -79,26 +79,35 @@ export class UpdateTaxRateComponent {
       tax_rate_name: this.taxrate.tax_rate_name,
       tax_authority_ref_id: this.taxrate.tax_authority_ref_id,
       tax_type_ref_id: this.taxrate.tax_type_ref_id,
-      is_active:this.taxrate.is_active,
-      tax_rate_details: this.formBuilder.array([this.tax_rate_details()])
+      is_active: this.taxrate.is_active,
+    });
+  
+    const taxRateDetailsArray = this.TaxRateForm.get('tax_rate_details') as FormArray;
+    taxRateDetailsArray.clear();
+  
+    this.taxrate.tax_rate_details.forEach((detail: any) => {
+      const formGroup = this.tax_rate_details();
+      formGroup.patchValue(detail);
+      taxRateDetailsArray.push(formGroup);
     });
   }
-
+  
   submit() {
-    this.data = this.TaxRateForm.value
-    this.taxrate.tax_rate_name = this.data.tax_rate_name
-    this.taxrate.tax_authority_ref_id = this.data.tax_authority_ref_id
-    this.taxrate.is_active = this.data.is_active
-    this.taxrate.tax_rate_details= this.formBuilder.array([this.tax_rate_details()])
-
-    // console.log(this.data)
-
+    this.data = this.TaxRateForm.value;
+    this.taxrate.tax_rate_name = this.data.tax_rate_name;
+    this.taxrate.tax_authority_ref_id = this.data.tax_authority_ref_id;
+    this.taxrate.is_active = this.data.is_active;
+    
+    // Update tax_rate_details array
+    this.taxrate.tax_rate_details = this.data.tax_rate_details;
+  
     this.taxRateService.updateTaxRate(this.taxrate?.pk, this.taxrate).subscribe(data => {
-      // console.log(data)
-    })
-
+      console.log(data);
+    });
+  
     this.router.navigate(['/']);
   }
+  
   public useDefault1 = false;
   public toggle1(event: MatSlideToggleChange) {
     console.log('toggle', event.checked);

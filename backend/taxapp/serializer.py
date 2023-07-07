@@ -25,8 +25,18 @@ class TaxRateSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         tax_rate_details = validated_data.pop('tax_rate_details')
         receipt_instance = TaxRate.objects.create(**validated_data)
-        
         for whr_i in tax_rate_details:
             TaxRateDetails.objects.create(**whr_i, header_ref_id=receipt_instance)
-        
         return receipt_instance
+    
+    
+    def update(self, instance, validated_data):
+        tax_rate_details = validated_data.pop('tax_rate_details', [])
+        instance.tax_rate_details.all().delete()
+        instance = super().update(instance, validated_data)
+        for whr_i in tax_rate_details:
+            TaxRateDetails.objects.create(**whr_i, header_ref_id=instance)
+        return instance
+
+
+    

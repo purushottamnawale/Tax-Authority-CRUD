@@ -13,5 +13,6 @@ urlpatterns = [
     # path('taxrate/', TaxRateList.as_view(), name="tax-rate"),
     path('taxrate/', views.TaxRateView, name="tax-rate"),
     path('taxrate/<int:pk>/', TaxRateList.as_view(), name="tax-rate"),
-    path('taxratedetails/', views.TaxRateDetailsView, name="tax-rate-details")
+    path('taxratedetails/', views.TaxRateDetailsView, name="tax-rate-details"),
+    # path('taxratedetails/<int:pk>/', TaxRateDetailsList.as_view(), name="tax-rate-details")
 ]

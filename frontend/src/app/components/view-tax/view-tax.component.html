@@ -28,12 +28,11 @@
   <!--container-->
   <div class="container my-5">
     <div class="row">
-      <div class="d-flex d-flex justify-content-between">
-        <h3 id="tax_authority">List of Tax Authority</h3>
-        <!--Add button -->
-        <button class="btn btn-primary" routerLink="/add"><i class="fa-solid fa-plus"></i> Add New Tax Authority</button>
-        <button class="btn btn-primary" routerLink="/addtaxrate">Add Tax Rate</button>
-        <button class="btn btn-primary" routerLink="/viewtaxrate">View Tax Rate</button>
+      <div class="row">
+        <h2 class="col" id="tax_authority">List of Tax Authority</h2>
+        <button class="col btn btn-primary mx-5" routerLink="/add"><i class="fa-solid fa-plus"></i> Add New Tax Authority</button>
+        <button class="col btn btn-primary mx-5" routerLink="/addtaxrate"><i class="fa-solid fa-plus"></i> Add Tax Rate</button>
+        <button class="col btn btn-primary" routerLink="/viewtaxrate" id="view_tax_rate"><i class="fa-solid fa-calendar"></i> View Tax Rate</button>
       </div>
       <div class="col my-3">
         <table class="table table-striped my-3">
